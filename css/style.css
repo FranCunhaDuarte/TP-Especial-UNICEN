@@ -408,6 +408,20 @@ table tbody tr .space-table{
      
     }
     
+    /*PRODUCTS*/
+
+    .container-products{
+        background-color: blue;
+    }
+    .grid-main-products{
+        grid-column:2 ;
+        font-size: 500px;
+    }
+
+
+    /*LOGIN    REGISTER  */
+
+
     .container-form{
         width: 100%;
         max-width: 800px;
