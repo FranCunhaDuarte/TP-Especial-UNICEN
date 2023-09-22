@@ -2,28 +2,42 @@
 
 function getRegister(){
         require_once 'templates/header.php';
-        
-       echo ' <main class="grid-main-contact">
-        <div class="contact-container">
-            <h3 class="contact-title">REGISTER</h3>
-                <form action="" class="contact-form">
-                    <input type="text" class="input-form-contact" placeholder="Nombre">
-                    <input type="text" class="input-form-contact" placeholder="Apellido">
-                    <input type="email" class="input-form-contact" placeholder="E-mail">
-                    <input type="text" class="input-form-contact" placeholder="Asunto">
-                    <textarea name="" class="" placeholder="Mensaje"></textarea>
-                    <div class="contenedor_captcha">
-                        <div class="contenedor_hijo">
-                            <div class="captcha"></div>
-                            <button id="recargar">Recargar</button>
-                        </div>
-                        <input class="ingreso_captcha" type="text"placeholder="Ingresar captcha" required>
-                        <div class="resultado"></div>
-                    </div>
-                    <input type="submit" id="submit-button">
+?>
+        <main class="grid-main-contact">
+        <div class="container-form">
+            <div class="container-back">
+                <div class="container-back-login">
+                    <h3>¿Ya tienes una cuenta?</h3>
+                    <p>Inicia sesion para entrar en la pagina</p>
+                    <button id="button-sing in">Iniciar Sesion</button>
+                </div>
+                <div class="container-back-register">
+                    <h3>¿Aun no tienes una cuenta?</h3>
+                    <p>Registrate ahora!</p>
+                    <button id="button-sing up">Registrarse</button>
+                </div>
+            </div>
+            <div class="container-login-register">
+                <form action="" class="form-login">
+                    <h2>Iniciar Sesion</h2>
+                    <input type="text" placeholder="Correo electronico">
+                    <input type="password" placeholder="Contraseña">
+                    <button type="submit">Iniciar Sesion</button>
                 </form>
-            </div> 
-        </main>';
+                
+                <form action="" class="form-register">
+                    <h2>Registrarse</h2>
+                    <input type="text" placeholder="Nombre completo">
+                    <input type="text" placeholder="Usuario">
+                    <input type="text" placeholder="Correo electronico">
+                    <input type="password" placeholder="Contraseña">
+                    <button type="submit">Registrarse</button>
+                </form>
+            </div>
+        </div>
+
+        </main>
+<?php
         require_once 'templates/footer.php';
     }
 ?>
