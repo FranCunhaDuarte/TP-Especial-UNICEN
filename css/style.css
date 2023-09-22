@@ -411,12 +411,28 @@ table tbody tr .space-table{
     /*PRODUCTS*/
 
     .container-products{
-        background-color: blue;
+        display: flex;
+        margin-top: 30px;
+        border: 1px solid black;
     }
     .grid-main-products{
         grid-column:2 ;
-        font-size: 500px;
+    
     }
+    .container-img{
+        background-color: red;
+        width: 20%;        
+    }
+    .container-img img{
+        width: 100%;
+    }
+    .container-descripcion{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-left: 15px;
+    }
+
 
 
     /*LOGIN    REGISTER  */
