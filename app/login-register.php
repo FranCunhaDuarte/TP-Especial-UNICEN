@@ -20,16 +20,15 @@ function getRegister(){
             <div class="container-login-register">
                 <form action="" class="form-login">
                     <h2>Iniciar Sesion</h2>
-                    <input type="text" placeholder="Correo electronico">
+                    <input type="email" placeholder="Correo electronico">
                     <input type="password" placeholder="Contraseña">
                     <button type="submit">Iniciar Sesion</button>
                 </form>
-                
                 <form action="" class="form-register">
                     <h2>Registrarse</h2>
                     <input type="text" placeholder="Nombre completo">
                     <input type="text" placeholder="Usuario">
-                    <input type="text" placeholder="Correo electronico">
+                    <input type="email" placeholder="Correo electronico">
                     <input type="password" placeholder="Contraseña">
                     <button type="submit">Registrarse</button>
                 </form>

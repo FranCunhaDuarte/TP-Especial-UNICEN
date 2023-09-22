@@ -17,8 +17,8 @@ let contain_back_login = document.querySelector(".container-back-login");
 let contain_back_register = document.querySelector(".container-back-register");
 
 function register(){
-    form_register.style.display = "block";
-    container_login_register.style.left = "410px";
+    form_register.style.display = "flex";
+    container_login_register.style.left = "53%";
     form_login.style.display = "none";
     contain_back_register.style.opacity = "0";
     contain_back_login.style.opacity = "1";
@@ -26,9 +26,10 @@ function register(){
 
 function login(){
     form_register.style.display = "none";
-    container_login_register.style.left = "10px";
-    form_login.style.display = "block";
+    container_login_register.style.left = "0";
+    form_login.style.display = "flex";
     contain_back_register.style.opacity = "1";
     contain_back_login.style.opacity = "0";
 }
 
+login();
