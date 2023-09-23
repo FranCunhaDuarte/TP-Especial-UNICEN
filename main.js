@@ -1,5 +1,7 @@
-document.getElementById("button-sing up").addEventListener("click", register);
-document.getElementById("button-sing in").addEventListener("click", login);
+let button_sing_up = document.querySelector("#button-sing up");
+let button_sing_in = document.querySelector("#button-sing in");
+if(button_sing_in) addEventListener("click", login);
+if(button_sing_up) addEventListener("click", register);
 
 let barra_navegacion=document.querySelector(".nav-list");
 let boton_ocultar=document.querySelector(".button-var");
@@ -31,5 +33,8 @@ function login(){
     contain_back_register.style.opacity = "1";
     contain_back_login.style.opacity = "0";
 }
+<<<<<<< HEAD
 
 login();
+=======
+>>>>>>> rama2
