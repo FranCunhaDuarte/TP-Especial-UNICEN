@@ -29,19 +29,18 @@ function getProducto(){
                 <div class="container-img">
                     <img src="<?php echo $product->img ?>" alt="">
                 </div>  
-                <div class="container-descripcion">   
-                    <div class="name-product">
-                        <h2><?php echo $product->name ?></h2>
+                <div class="container-description">
+                    <div class="data-container">
+                        <span>$<?php echo $product->price ?></span>
+                        <p><?php echo $product->name ?></p>
+                        <p><?php echo $product->description ?></p>
                     </div>
-                    <div class="description-product"><p><?php echo $product->description ?></p></div>
-                    <div class="price-product"><p><?php echo $product->price ?></p></div>
                     <div class="buttons-container">
-                        <div><button id="probando"><a href="delProduct/<?php echo $product->id_product?>">BORRAR</a></button></div>
-                        <button class="probando">EDITAR</button>
-                        <div><button>COMPRAR</button></div>
+                        <button class="delButton" id="probando"><a href="delProduct/<?php echo $product->id_product?>">BORRAR</a></button>
+                        <button class="updateButton probando">EDITAR</button>
+                        <button>COMPRAR</button>
                     </div>
-        </div>
-                </div>       
+                </div>
             </div>
             <?php
                 } 
