@@ -13,7 +13,7 @@
             </ul>
         </div>
 </footer>
-<script src="https://kit.fontawesome.com/80520dbe4a.js" crossorigin="anonymous"></script>
+
 <script src="main.js"></script>
 
 </body>

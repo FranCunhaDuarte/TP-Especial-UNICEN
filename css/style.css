@@ -25,7 +25,7 @@ body{
 }
 .grid-header{
     grid-area: header;
-    background-color: rgb(255, 255, 255);
+    background-color: #f3f3f3;
     color: rgb(255, 255, 255);
 }
 .grid-nav{
@@ -34,12 +34,14 @@ body{
 }
 .grid-main{
     grid-area: main;
-    background-color: rgb(255, 255, 255);
+    background-color: #f3f3f3;
     display: grid;
     justify-items: center;
     grid-template-rows: 50px 1fr;
     margin: 20px 0 30px 0;
 }
+
+
 .grid-footer{
     grid-area: footer;
     background-color: rgb(39, 39, 39);
@@ -185,9 +187,9 @@ body{
 
 @media only screen and (min-width: 600px) {
     body{
-        background-color: rgb(255, 255, 255);
+        background-color: #f3f3f3;
         display: grid;
-        grid-template-columns: 1fr 5fr 1fr;
+        grid-template-columns: 1fr 4fr 1fr;
         grid-template-rows: 120px 45px auto 200px;
         grid-template-areas: 
         "header header header"
@@ -243,19 +245,75 @@ body{
         justify-content: center;
     }
     
-    /*PRODUCTS*/
+    /*   PRODUCTS   */
+
+    .form-products{
+        margin: 30px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 20px;
+        box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.134);
+    }
+
+    .form-products form{
+        display: flex;
+        gap: 10px;
+        height: 80%;
+        width: 100%;
+        flex-direction: column;        
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .form-products form label{
+        width: 80%;
+        padding-left: 10px;
+    }
+
+    .form-products form input{
+        width: 80%;
+        padding: 5px;
+        border: none;
+        background: #f2f2f2;
+        border-radius: 10px;
+        font-size: 13px;
+        outline: none;
+    }
+
+    .form-products form button{
+        padding: 10px 40px;
+        font-size: 14px;
+        background-color: rgb(88, 198, 139);
+        border: none;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+    }
 
     .container-products{
         display: flex;
+        flex-direction: column;
         margin-top: 30px;
-        border: 1px solid black;
     }
-    .grid-main-products{
-        grid-column:2 ;
+    .container-product{
+        display: flex;
+        margin-left: 30px;
+        background-color: #ffffff;
+        min-height: 100px;
+        border-bottom: solid 1px rgb(178, 178, 178);
+    }
     
+    .grid-main-products{
+        grid-column: 2;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1.5fr 2fr;
     }
     .container-img{
-        background-color: red;
         width: 20%;        
     }
     .container-img img{
@@ -380,4 +438,13 @@ body{
         color: white;
         cursor: pointer;
     }
+
+
+    /*   P R O D U C T S    */
+
+
+  }
+
+  .oculto{
+    display: none;
   }

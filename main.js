@@ -34,4 +34,4 @@ function login(){
     contain_back_login.style.opacity = "0";
 }
 
-login()
+login() 

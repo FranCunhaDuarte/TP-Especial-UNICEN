@@ -6,7 +6,7 @@ require_once 'app/login-register.php';
 
 
 
-$action = 'index'; 
+$action = 'producto'; 
 
 if (!empty($_GET['action'])) { 
     $action = $_GET['action'];
@@ -25,6 +25,15 @@ switch ($params[0]) {
         break;
     case 'register':
         getRegister();
+        break;
+    case 'addProduct':
+        addProduct();
+        break;
+    case 'delProduct':
+        removeProduct($params[1]);
+        break;
+    case 'updateProduct':
+        modifyProduct($params[1]);
         break;
     default:
         echo('404 Page not found');
