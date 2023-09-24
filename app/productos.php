@@ -24,7 +24,7 @@ $categories = getCategory();
 ?>
 
 <div class="form-products">
-        <form action="addProduct" method="post">
+        <form action="addProduct" method="post" enctype="multipart/form-data">
             <label>Producto</label>
             <input class="" name="name" type="text">
             <label>Categoria</label>
@@ -38,7 +38,7 @@ $categories = getCategory();
             <label>Precio</label>
             <input class="" name="price" type="number">
             <label>Imagen</label>
-            <input type="text" name="img" placeholder="Inserte link de la imagen">
+            <input type="file" name="img" placeholder="Inserte link de la imagen">
             <button type="submit">ENVIAR</button>
         </form>
 
@@ -65,7 +65,7 @@ $categories = getCategory();
                         <div><button><a href="delProduct/<?php echo $product->id_product?>">BORRAR</a></button></div>
                         <?php } ?>
                         <div class="form-products posicion ocultar">
-                                <form action="editar/<?php echo $product->id_product?>" method="POST">
+                                <form action="editar/<?php echo $product->id_product?>" method="POST" enctype="multipart/form-data>
                                     <label>Producto</label>
                                     <input class="" name="name" type="text">
                                     <label>Categoria</label>
@@ -106,14 +106,20 @@ $categories = getCategory();
 }
 
     function addProduct(){
-        if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['img']) && isset($_POST['category'])){
+        if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['category'])){
             $name = $_POST['name'];
             $description = $_POST['description'];
             $price = $_POST['price'];
-            $img = $_POST['img'];
+            $img = $_FILES['img'];
             $category = $_POST['category'];
-            insertProduct($name, $description, $price, $img, $category );
-            header('Location: ' . BASE_URL);
+            var_dump($name, $description, $price, $img, $category);
+            if($_FILES['img']['type']){
+                if($_FILES['img']['type'] == "image/jpg" || $_FILES['img']['type'] == "image/jpeg" || $_FILES['img']['type'] == "image/png" ) {
+                    insertProduct($name, $description, $price, $_FILES['img'], $category );
+                    header('Location: ' . BASE_URL);    
+                }
+        }
+        header('Location: ' . BASE_URL); 
         }
     }
 

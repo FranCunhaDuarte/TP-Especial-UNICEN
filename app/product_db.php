@@ -19,9 +19,19 @@
     }
 
     function insertProduct($name, $description, $price,$img, $id_category_fk){
+        $pathImg= null;
+        if ($img){
+            $pathImg = uploadImage($img);
+        }
         $db = connection();
         $query = $db->prepare('INSERT INTO product (name, description, price, img, id_category_fk) VALUES(?,?,?,?,?)');
-        $query->execute(array($name,$description,$price,$img, $id_category_fk));
+        $query->execute(array($name,$description,$price,$pathImg, $id_category_fk));
+    }
+
+    function uploadImage($image){
+        $target = "img/" . uniqid() . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));  
+        move_uploaded_file($image['tmp_name'], $target);
+        return $target;
     }
 
     function deleteProduct($id){
