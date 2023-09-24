@@ -41,7 +41,6 @@ $categories = getCategory();
             <input type="file" name="img" placeholder="Inserte link de la imagen">
             <button type="submit">ENVIAR</button>
         </form>
-
 </div>
         <?php
             }
@@ -62,31 +61,40 @@ $categories = getCategory();
                     <div class="description-product"><p><?php echo $product->category ?></p></div>
                     <div class="buttons-container">
                         <?php if($username == 'administrador'){ ?>
-                        <div><button><a href="delProduct/<?php echo $product->id_product?>">BORRAR</a></button></div>
+                        <button class="delButton"><a href="delProduct/<?php echo $product->id_product?>">BORRAR</a></button>
                         <?php } ?>
-                        <div class="form-products posicion ocultar">
+                        <div class="form-edit-products posicion ocultar">
                                 <form action="editar/<?php echo $product->id_product?>" method="POST" enctype="multipart/form-data">
-                                    <label>Producto</label>
-                                    <input class="" name="name" type="text">
-                                    <label>Categoria</label>
-                                    <select name="category" id="">
-                                        <?php foreach($categories as $category) {?>
-                                            <option value="<?php echo $category->id_category?>"><?php echo $category->category ?></option> 
-                                        <?php } ?>
-                                    </select>
-                                    <label>Descripcion</label>
-                                    <input class="" name="description" type="text">
-                                    <label>Precio</label>
-                                    <input class="" name="price" type="number">
-                                    <label>Imagen</label>
-                                    <input type="file" name="img" placeholder="Inserte link de la imagen">
-                                    <button type="submit">ENVIAR</button>
-                                      
+                                    <div>
+                                        <label>Producto</label>
+                                        <input class="" name="name" type="text">
+                                    </div>
+                                    <div>
+                                        <label>Categoria</label>
+                                        <select name="category" id="">
+                                            <?php foreach($categories as $category) {?>
+                                                <option value="<?php echo $category->id_category?>"><?php echo $category->category ?></option> 
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label>Descripcion</label>
+                                        <input class="" name="description" type="text">
+                                    </div>
+                                    <div>
+                                        <label>Precio</label>
+                                        <input class="" name="price" type="number">
+                                    </div>
+                                    <div>
+                                        <label>Imagen</label>
+                                        <input type="file" name="img" placeholder="Inserte link de la imagen">
+                                    </div>
+                                    <button type="submit">EDITAR</button>
                                 </form>
-                                <button class="cerrar">Cerrar</button>     
+                                <button class="cerrar">X</button>
                         </div>
                         <?php if($username == 'administrador'){ ?>                 
-                        <button class="modify">Editar</button>
+                        <button class="modify">EDITAR</button>
                         <?php } ?>   
                     </div>
                 </div>
@@ -97,7 +105,7 @@ $categories = getCategory();
         </div>
         <?php 
             if(isset($_SESSION['user'])){ ?>
-        <a href="logout">salir</a>
+        <button class="log-out-button"><a href="logout">Cerrar Sesion</a></button>
         <?php } ?>
     </main>
 

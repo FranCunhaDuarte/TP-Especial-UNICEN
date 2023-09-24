@@ -254,7 +254,7 @@ body{
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 400px;
+        height: 500px;
         background-color: rgb(255, 255, 255);
         border-radius: 20px;
         box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.134);
@@ -275,7 +275,7 @@ body{
         padding-left: 10px;
     }
 
-    .form-products form input{
+    .form-products form input,select{
         width: 80%;
         padding: 5px;
         border: none;
@@ -283,6 +283,7 @@ body{
         border-radius: 10px;
         font-size: 13px;
         outline: none;
+        text-transform: capitalize;
     }
 
     .form-products form button{
@@ -295,20 +296,95 @@ body{
         cursor: pointer;
     }
 
+    
+    .log-out-button{
+        width: 110px;
+        height: 30px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 15px;
+        transition: background-color .5s;
+    }
+    
+    
+    .log-out-button a{
+        text-decoration: none;
+        height: 100%;
+        width: 100%;
+        border-radius: 15px;
+        color: black;
+        transition: color .5s
+    }
+    
+    .log-out-button:hover{
+        background-color: rgb(88, 198, 139);
+    }
+    
+    .log-out-button:hover a{
+        color: rgb(255, 255, 255);
+    }
     .container-products{
         display: flex;
+        grid-column: 2;
         flex-direction: column;
         margin: 30px 0px;
         gap: 15px;
     }
     .container-product{
         display: flex;
+        align-items: center;
         margin-left: 30px;
         background-color: #ffffff;
         max-height: 120px;
         min-width: 500px;
         border-radius: 5px;
         box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.102);
+    }
+    .form-edit-products{
+        position: absolute;
+        margin: 30px 0;
+        width: 100%;
+        min-width: 600px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 120px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.134);
+    }
+
+    .form-edit-products form{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 50px 50px
+    }
+
+    .form-edit-products form label{
+        width: 80%;
+        padding-left: 10px;
+    }
+
+    .form-edit-products form input,select{
+        width: 80%;
+        padding: 5px;
+        border: none;
+        background: #f2f2f2;
+        border-radius: 10px;
+        font-size: 13px;
+        outline: none;
+        text-transform: capitalize;
+    }
+
+    .form-edit-products form button{
+        width: 110px;
+        height: 30px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 15px;
+        color: white;
+        background-color: rgb(88, 198, 139);
     }
     
     .grid-main-products{
@@ -365,6 +441,13 @@ body{
     }
     .delButton a{
         text-decoration: none;
+        color: white;
+    }
+    .modify{
+        padding: 3px 10px;
+        border-radius: 20px;
+        border: none;
+        background-color: rgb(59, 118, 206);
         color: white;
     }
     .updateButton{
