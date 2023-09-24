@@ -34,4 +34,30 @@ function login(){
     contain_back_login.style.opacity = "0";
 }
 
-login() 
+let botones = document.querySelectorAll(".modify");
+if (botones) {
+    botones.forEach(boton => {
+        boton.addEventListener("click", () => {
+            let formulario = boton.previousElementSibling;
+            if (formulario) {
+                formulario.classList.toggle("ocultar");
+            }
+        });
+    });
+}
+
+let botonesCerrar = document.querySelectorAll(".cerrar");
+if (botonesCerrar) {
+    botonesCerrar.forEach(boton => {
+        boton.addEventListener("click", () => {
+            let formulario = boton.parentElement; // Obtén el contenedor del formulario
+            if (formulario) {
+                formulario.classList.add("ocultar");
+            }
+        });
+    });
+}
+
+login();
+
+

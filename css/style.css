@@ -422,9 +422,7 @@ body{
     .form-register{
         height: 500px;
     }
-    .ocultar-register{
-        display: none;
-    }
+
     .form-login{
         height: 500px;
         justify-content: space-evenly;
@@ -445,6 +443,12 @@ body{
 
   }
 
-  .oculto{
+  .posicion{
+    position: absolute;
+    width: 300px;
+    margin-top: 200px;
+  }
+
+  .ocultar{
     display: none;
   }

@@ -4,6 +4,10 @@ require_once 'app/index.php';
 require_once 'app/productos.php';
 require_once 'app/login-register.php';
 
+define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+define("URL_PRODUCT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/producto');
+define("URL_LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/register');
+define("URL_USER", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/admin');
 
 
 $action = 'producto'; 
@@ -32,9 +36,18 @@ switch ($params[0]) {
     case 'delProduct':
         removeProduct($params[1]);
         break;
-    case 'updateProduct':
+    case 'editar':
         modifyProduct($params[1]);
         break;
+    case 'addUser':
+        registerUser();
+        break;
+    case 'iniciarSesion':
+        loginIn();
+        break;
+        case 'logout':
+        logout();
+        break;                    
     default:
         echo('404 Page not found');
         break;
