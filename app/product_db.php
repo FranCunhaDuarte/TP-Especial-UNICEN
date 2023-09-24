@@ -41,9 +41,13 @@
     }
     
     function updateProduct($id, $name, $description, $price, $img, $id_category_fk){
+        $pathImg= null;
+        if ($img){
+            $pathImg = uploadImage($img);
+        }
         $db = connection();
         $query = $db->prepare('UPDATE product SET name = ?, description = ?, price = ?, img =?, id_category_fk=? WHERE product.id_product = ?');
-        $query->execute(array($name, $description, $price, $img, $id_category_fk, $id));
+        $query->execute(array($name, $description, $price, $pathImg, $id_category_fk, $id));
     }
       
 ?>
