@@ -4,7 +4,6 @@
     
 function getRegister(){
         require_once 'templates/header.php';
-        session_start();
         if(isset($_SESSION['user'])){
             header('Location: ' . URL_PRODUCT);
         }
@@ -63,7 +62,7 @@ function getRegister(){
         $user = $_POST['user'];
         $password = $_POST['password'];
 
-        $user = getPassword($user);
+        $user = getUser($user);
         if(isset($_POST['user']) && isset($_POST['password'])){
             if($password == $user->password){
                 session_start();

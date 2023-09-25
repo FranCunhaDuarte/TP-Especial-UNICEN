@@ -47,7 +47,10 @@ switch ($params[0]) {
         break;
         case 'logout':
         logout();
-        break;                    
+        break;      
+        case 'usuarios':
+            getUsuarios();
+            break;                
     default:
         echo('404 Page not found');
         break;

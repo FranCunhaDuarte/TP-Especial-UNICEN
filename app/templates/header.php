@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +27,12 @@
             <li><a href="index" class="index-home">Inicio</a></li>
             <li><a href="producto" class="index-products nav-text">Productos</a></li>
             <li><a href="register" class="index-contact nav-text">Login/Register</a></li>
+            <?php if(isset($_SESSION['tipouser']) && $_SESSION['tipouser'] =="administrador"){ ?>
+                <li><a href="usuarios" class="index-contact nav-text">Usuarios</a></li>
+            <?php } ?>
+            <?php if(isset($_SESSION['user'])){ ?>
+                <li><a href="logout" class="index-contact nav-text">Cerrar Sesion</a></li>
+            <?php } ?>
         </ul>
         <i class="fa-solid fa-bars button-var"></i>
         <ul class="nav-list hide-menu">

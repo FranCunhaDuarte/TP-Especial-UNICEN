@@ -7,7 +7,7 @@
         $query->execute(array($name,$user,$email,$password));
     }
 
-    function getPassword($usuario){
+    function getUser($usuario){
         $db = connection();
         $query= $db->prepare( "SELECT * FROM user WHERE user = ?");
         $query->execute(array($usuario));
