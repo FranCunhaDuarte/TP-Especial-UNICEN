@@ -67,7 +67,7 @@ $categories = getCategory();
                                 <form action="editar/<?php echo $product->id_product?>" method="POST" enctype="multipart/form-data">
                                     <div>
                                         <label>Producto</label>
-                                        <input class="" name="name" type="text">
+                                        <input class="" name="name" type="text" value="<?php echo $product->name ?>">
                                     </div>
                                     <div>
                                         <label>Categoria</label>
@@ -79,15 +79,15 @@ $categories = getCategory();
                                     </div>
                                     <div>
                                         <label>Descripcion</label>
-                                        <input class="" name="description" type="text">
+                                        <input class="" name="description" type="text" value="<?php echo $product->description ?>">
                                     </div>
                                     <div>
                                         <label>Precio</label>
-                                        <input class="" name="price" type="number">
+                                        <input class="" name="price" type="number" value="<?php echo $product->price ?>">
                                     </div>
                                     <div>
                                         <label>Imagen</label>
-                                        <input type="file" name="img" placeholder="Inserte link de la imagen">
+                                        <input type="file" name="img" placeholder="Inserte link de la imagen" value="<?php echo $product->img?>">
                                     </div>
                                     <button type="submit">EDITAR</button>
                                 </form>
@@ -114,7 +114,7 @@ $categories = getCategory();
 }
 
     function addProduct(){
-        if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['category'])){
+        if(isset($_POST['name']) && strlen($_POST['name']) <= 25 && isset($_POST['description']) && strlen($_POST['description']) <= 50 && isset($_POST['price']) && $_POST['price'] >0 && isset($_POST['category'])){
             $name = $_POST['name'];
             $description = $_POST['description'];
             $price = $_POST['price'];
@@ -123,7 +123,7 @@ $categories = getCategory();
             if($_FILES['img']['type']){
                 if($_FILES['img']['type'] == "image/jpg" || $_FILES['img']['type'] == "image/jpeg" || $_FILES['img']['type'] == "image/png" ) {
                     insertProduct($name, $description, $price, $_FILES['img'], $category );
-                    header('Location: ' . BASE_URL);    
+                    header('Location: ' . BASE_URL);
                 }
         }
         header('Location: ' . BASE_URL); 
@@ -136,7 +136,7 @@ $categories = getCategory();
     }
 
     function modifyProduct($id){
-        if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['price']) && isset($_POST['category'])){
+        if(isset($_POST['name']) && strlen($_POST['name']) <= 25 && isset($_POST['description']) && strlen($_POST['description']) <= 50 && isset($_POST['price']) && $_POST['price'] >0 && isset($_POST['category'])){
             $name = $_POST['name'];
             $description = $_POST['description'];
             $price = $_POST['price'];
