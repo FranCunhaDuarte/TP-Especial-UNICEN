@@ -25,7 +25,7 @@ $categories = getCategory();
 <div class="form-products">
         <form action="addProduct" method="post" enctype="multipart/form-data">
             <label>Producto</label>
-            <input class="" name="name" type="text">
+            <input class="" name="name" type="text" maxlength="25">
             <label>Categoria</label>
             <select name="category" id="">
                 <?php foreach($categories as $category) {?>
@@ -33,9 +33,9 @@ $categories = getCategory();
                 <?php } ?>
             </select>
             <label>Descripcion</label>
-            <input class="" name="description" type="text">
+            <input class="" name="description" type="text" maxlength="50">
             <label>Precio</label>
-            <input class="" name="price" type="number">
+            <input class="" name="price" type="number" maxlength="50">
             <label>Imagen</label>
             <input type="file" name="img" placeholder="Inserte link de la imagen">
             <button type="submit">ENVIAR</button>
@@ -66,7 +66,7 @@ $categories = getCategory();
                                 <form action="editar/<?php echo $product->id_product?>" method="POST" enctype="multipart/form-data">
                                     <div>
                                         <label>Producto</label>
-                                        <input class="" name="name" type="text" value="<?php echo $product->name ?>">
+                                        <input class="" name="name" type="text" value="<?php echo $product->name ?>" maxlength="25">
                                     </div>
                                     <div>
                                         <label>Categoria</label>
@@ -78,11 +78,11 @@ $categories = getCategory();
                                     </div>
                                     <div>
                                         <label>Descripcion</label>
-                                        <input class="" name="description" type="text" value="<?php echo $product->description ?>">
+                                        <input class="" name="description" type="text" value="<?php echo $product->description ?>" maxlength="50">
                                     </div>
                                     <div>
                                         <label>Precio</label>
-                                        <input class="" name="price" type="number" value="<?php echo $product->price ?>">
+                                        <input class="" name="price" type="number" value="<?php echo $product->price ?>" maxlength="50">
                                     </div>
                                     <div>
                                         <label>Imagen</label>
@@ -102,10 +102,6 @@ $categories = getCategory();
                 } 
             ?>   
         </div>
-        <?php 
-            if(isset($_SESSION['user'])){ ?>
-        <button class="log-out-button"><a href="logout">Cerrar Sesion</a></button>
-        <?php } ?>
     </main>
 
 <?php
