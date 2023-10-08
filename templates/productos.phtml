@@ -1,27 +1,11 @@
 <?php
-  
-require_once "product_db.php";
+    require_once 'templates/header.phtml';
+    require_once './app/helper/UserHelper.php';
+    $isLoggin = UserHelper::checkSession();
+    $isAdmin = UserHelper::verify(); ?>
 
-
-function getProducto(){
-    require_once 'templates/header.php';
-    $products = getProducts();
-
-?>
-    <?php
-        $username = 'usuario'; 
-        if(isset($_SESSION['user'])){
-            $username = $_SESSION['tipouser'];
-            if($username == 'administrador'){
-    ?>
-
-    <main class="grid-main-products">
-    <?php
-
-require_once "./app/category_db.php";
-$categories = getCategory();
-?>
-
+<?php if($isAdmin == 'Administrador'){ ?>
+<main class="grid-main-products">
 <div class="form-products">
         <form action="addProduct" method="post" enctype="multipart/form-data">
             <label>Producto</label>
@@ -41,25 +25,22 @@ $categories = getCategory();
             <button type="submit">ENVIAR</button>
         </form>
 </div>
-        <?php
-            }
-        }
-        ?>
+<?php } ?>
         <div class="container-products">
         <?php foreach($products as $product) {?>
             <div class="container-product">
                 <div class="container-img">
                     <img src="<?php echo $product->img ?>" alt="">
-                </div>  
+                </div>
                 <div class="container-description">
                     <div class="data-container">
                         <span>$<?php echo $product->price ?></span>
                         <p><?php echo $product->name ?></p>
-                        <p><?php echo $product->description ?></p>
+                        <p><?php echo substr($product->description,0,30)?>...</p>
                     </div>
                     <div class="description-product"><p><?php echo $product->category ?></p></div>
                     <div class="buttons-container">
-                        <?php if($username == 'administrador'){ ?>
+                        <?php if($isAdmin == 'Administrador'){ ?>
                         <button class="delButton"><a href="delProduct/<?php echo $product->id_product?>">BORRAR</a></button>
                         <?php } ?>
                         <div class="form-edit-products posicion ocultar">
@@ -92,7 +73,7 @@ $categories = getCategory();
                                 </form>
                                 <button class="cerrar">X</button>
                         </div>
-                        <?php if($username == 'administrador'){ ?>                 
+                        <?php if($isAdmin == 'Administrador'){ ?>                 
                         <button class="modify">EDITAR</button>
                         <?php } ?>   
                     </div>
@@ -105,46 +86,6 @@ $categories = getCategory();
     </main>
 
 <?php
-    require_once 'templates/footer.php';
-}
-
-    function addProduct(){
-        if(isset($_POST['name']) && strlen($_POST['name']) <= 25 && isset($_POST['description']) && strlen($_POST['description']) <= 50 && isset($_POST['price']) && $_POST['price'] >0 && isset($_POST['category'])){
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $img = $_FILES['img'];
-            $category = $_POST['category'];
-            if($_FILES['img']['type']){
-                if($_FILES['img']['type'] == "image/jpg" || $_FILES['img']['type'] == "image/jpeg" || $_FILES['img']['type'] == "image/png" ) {
-                    insertProduct($name, $description, $price, $_FILES['img'], $category );
-                    header('Location: ' . BASE_URL);
-                }
-        }
-        header('Location: ' . BASE_URL); 
-        }
-    }
-
-    function removeProduct($id){
-        deleteProduct($id);
-        header('Location: ' . BASE_URL);
-    }
-
-    function modifyProduct($id){
-        if(isset($_POST['name']) && strlen($_POST['name']) <= 25 && isset($_POST['description']) && strlen($_POST['description']) <= 50 && isset($_POST['price']) && $_POST['price'] >0 && isset($_POST['category'])){
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $img = $_POST['img'];
-            $category = $_POST['category'];
-            if($_FILES['img']['type']){
-                if($_FILES['img']['type'] == "image/jpg" || $_FILES['img']['type'] == "image/jpeg" || $_FILES['img']['type'] == "image/png" ) {
-                    updateProduct($id,$name, $description, $price, $_FILES['img'], $category );
-                    header('Location: ' . BASE_URL);    
-                }
-        }
-        header('Location: ' . BASE_URL); 
-        }
-    }
+    require_once 'templates/footer.phtml';
 
 ?>

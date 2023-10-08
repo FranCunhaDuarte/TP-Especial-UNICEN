@@ -128,21 +128,20 @@ body{
     font-weight: 500;
 }
 
+.index-logout{
+    border-radius: 10px;
+    color: white;
+    padding: 4px 10px;
+    transition: background-color .4s;
+}
+
+.index-logout:hover{
+    background-color: rgb(187, 84, 84);
+}
+
 .hide-menu{
     display: none;
 }
-
-
-
-/*     M A I N     */
-
-
-
-
-
-
-/*       F O O T E R        */
-
 
 
 .grid-footer{

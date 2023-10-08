@@ -1,14 +1,18 @@
 <?php
 
-require_once 'app/index.php';
-require_once 'app/productos.php';
-require_once 'app/login-register.php';
+require_once './app/controllers/ProductController.php';
+require_once './app/controllers/UserController.php';
+require_once './app/helper/UserHelper.php';
+
+
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 define("URL_PRODUCT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/producto');
 define("URL_LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/register');
 define("URL_USER", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/admin');
 
+$productosController = new ProductController();
+$user = new UserController();
 
 $action = 'producto'; 
 
@@ -25,32 +29,32 @@ switch ($params[0]) {
         getIndex();
         break;
     case 'producto':
-        getProducto();
+        $productosController->getProducto();
         break;
     case 'register':
-        getRegister();
+        $user->showLogin();
         break;
     case 'addProduct':
-        addProduct();
+        $productosController->addProduct();
         break;
     case 'delProduct':
-        removeProduct($params[1]);
+        $productosController->removeProduct($params[1]);
         break;
     case 'editar':
-        modifyProduct($params[1]);
+        $productosController->modifyProduct($params[1]);
         break;
     case 'addUser':
-        registerUser();
+        $user->registerUser();
         break;
     case 'iniciarSesion':
-        loginIn();
+        $user->loginIn();
         break;
         case 'logout':
-        logout();
+        UserHelper::logout();
         break;      
-        case 'usuarios':
-            getUsuarios();
-            break;                
+        // case 'usuarios':
+        //     getUsuarios();
+        //     break;                
     default:
         echo('404 Page not found');
         break;

@@ -1,4 +1,8 @@
-<?php session_start();?>
+<?php 
+    require_once './app/helper/UserHelper.php';
+    $isLoggin = UserHelper::checkSession();
+    $isAdmin = UserHelper::verify();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,13 +30,20 @@
         <ul class="nav-list-main">
             <li><a href="index" class="index-home">Inicio</a></li>
             <li><a href="producto" class="index-products nav-text">Productos</a></li>
-            <li><a href="register" class="index-contact nav-text">Login/Register</a></li>
-            <?php if(isset($_SESSION['tipouser']) && $_SESSION['tipouser'] =="administrador"){ ?>
+
+            <?php if($isAdmin=='Administrador'){ ?>
                 <li><a href="usuarios" class="index-contact nav-text">Usuarios</a></li>
+                <li><a href="categorias" class="index-contact nav-text">Categorias</a></li>
             <?php } ?>
-            <?php if(isset($_SESSION['user'])){ ?>
-                <li><a href="logout" class="index-contact nav-text">Cerrar Sesion</a></li>
-            <?php } ?>
+            <?php 
+                if($isLoggin){?>
+                    <li><a href="logout" class="index-logout nav-text">Cerrar Sesion</a></li>
+               <?php } else{
+                ?>
+                    <li><a href="register" class="index-contact nav-text">Login/Register</a></li>
+                <?php 
+                }
+            ?>
         </ul>
         <i class="fa-solid fa-bars button-var"></i>
         <ul class="nav-list hide-menu">
