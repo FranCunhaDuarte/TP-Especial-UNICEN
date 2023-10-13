@@ -1,0 +1,18 @@
+<?php require_once './templates/header.phtml'; ?>
+
+<div class="container-product">
+    <div class="container-img">
+        <img src= "<?php echo BASE_URL. $product->img ?>" alt="">
+    </div>
+    <div class="container-description">
+        <div class="data-container">
+            <span>$<?php echo $product->price ?></span>
+            <p><?php echo $product->name ?></p>
+            <p><?php echo $product->description?></p>
+        </div>
+        <div class="description-product"><p><?php echo $product->category ?></p></div>
+    </div>
+</div>
+
+<?php require_once './templates/footer.phtml'?>
+

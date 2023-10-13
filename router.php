@@ -7,14 +7,15 @@ require_once './app/helper/UserHelper.php';
 
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
-define("URL_PRODUCT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/producto');
+define("URL_PRODUCT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/productos');
 define("URL_LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/register');
 define("URL_USER", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/admin');
+define("URL_LOGOUT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/logout');
 
 $productosController = new ProductController();
 $user = new UserController();
 
-$action = 'producto'; 
+$action = 'productos'; 
 
 if (!empty($_GET['action'])) { 
     $action = $_GET['action'];
@@ -28,9 +29,12 @@ switch ($params[0]) {
     case 'index':
         getIndex();
         break;
-    case 'producto':
-        $productosController->getProducto();
+    case 'productos':
+        $productosController->getProducts();
         break;
+    case 'producto':
+        $productosController->getProduct($params[1]);
+        break;        
     case 'register':
         $user->showLogin();
         break;
@@ -54,7 +58,7 @@ switch ($params[0]) {
         break;      
         // case 'usuarios':
         //     getUsuarios();
-        //     break;                
+        //     break;              
     default:
         echo('404 Page not found');
         break;

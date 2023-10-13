@@ -18,10 +18,15 @@
     
     }
 
-    public function getProducto(){
+    public function getProducts(){
         $products = $this->model->getProducts();
         $categories = $this->modelc->getCategory();
         $this->view-> showProducts($products, $categories);
+    }
+
+    public function getProduct($id){
+        $product = $this->model->getProduct($id);
+        $this->view-> showProduct($product);
     }
 
     public function addProduct(){

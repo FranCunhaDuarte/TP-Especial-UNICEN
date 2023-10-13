@@ -28,6 +28,7 @@
 <?php } ?>
         <div class="container-products">
         <?php foreach($products as $product) {?>
+            
             <div class="container-product">
                 <div class="container-img">
                     <img src="<?php echo $product->img ?>" alt="">
@@ -38,7 +39,7 @@
                         <p><?php echo $product->name ?></p>
                         <p><?php echo substr($product->description,0,30)?>...</p>
                     </div>
-                    <div class="description-product"><p><?php echo $product->category ?></p></div>
+                    <div class="description-product"><p><?php echo $product->category?></p></div>
                     <div class="buttons-container">
                         <?php if($isAdmin == 'Administrador'){ ?>
                         <button class="delButton"><a href="delProduct/<?php echo $product->id_product?>">BORRAR</a></button>
@@ -75,6 +76,8 @@
                         </div>
                         <?php if($isAdmin == 'Administrador'){ ?>                 
                         <button class="modify">EDITAR</button>
+                        <a href="producto/<?php echo $product->id_product?>" class="product-detail">Ver mas</a>
+                    
                         <?php } ?>   
                     </div>
                 </div>

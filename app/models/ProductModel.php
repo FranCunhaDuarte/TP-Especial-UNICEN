@@ -17,12 +17,11 @@
         }
         
         function getProduct($id){
-            $query = $this->db->prepare("SELECT * FROM product WHERE id_product = ?");
+            $query = $this->db->prepare("SELECT * FROM product INNER JOIN category ON product.id_category_fk = category.id_category WHERE id_product = ?");
             $query->execute(array($id));
             $product = $query->fetch(PDO::FETCH_OBJ);
             return $product;
         }
-    
         function insertProduct($name, $description, $price,$img, $id_category_fk){
             $pathImg= null;
             if ($img){
