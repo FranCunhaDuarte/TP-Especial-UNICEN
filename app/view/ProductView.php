@@ -10,4 +10,7 @@ class ProductsView {
     public function showProduct($product) {
         require_once './templates/producto.phtml';
     }
+    public function showIndex($products) {
+        require_once 'templates/index.phtml';
+    }
 }

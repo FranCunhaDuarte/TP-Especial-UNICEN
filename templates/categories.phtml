@@ -1,0 +1,88 @@
+<?php   require_once './templates/header.phtml'; 
+        $isLoggin = UserHelper::checkSession();
+        $isAdmin = UserHelper::verify();
+?>
+
+    <main class="categories-main">
+        <aside class="categories-filter">
+            <?php if($isAdmin == 'Administrador'){?>
+            <form class="addCategory-form" action="addCategory" method="POST">
+                <input class="input-category"type="text" name="newCategory" placeholder="Ingrese la categoria...">
+                <button class="input-submit-category">+</button>
+            </form>
+            <?php } ?>
+            <form class="categories-container-checkbox" action="categories" method="GET">
+                <?php foreach($categories as $category) {
+                    ?>
+                    <div class="checkbox-box">
+                        <input id="" type="checkbox" name="boxes[]" value="<?= $category->id_category?>">
+                        <p><?= $category->category ?></p>
+                        <?php if($isAdmin == 'Administrador'){?>
+                        <button class="button-delete-category"><a href="delCategory/<?= $category->id_category?>">X</a></button>
+                        <?php } ?>
+                    </div>
+                    <?php } ?>
+                    <input class="input-submit-filter" type="submit" value="Filtrar">
+            </form>
+            <?php if($isAdmin == 'Administrador'){ ?>
+            <form class="categories-container-checkbox" action="modifyCategory<?php $category->id_category ?>" method="POST">
+                <?php foreach($categories as $category) {
+                    ?>
+                    <div class="edit-box">
+                        <input class="edit-input" name="category" type="text" value="<?= $category->category ?>">
+                    </div>
+                    <?php } ?>
+                    <input class="input-submit-filter" type="submit" value="Actualizar">
+            </form>
+            <?php } ?>
+        </aside>
+        <div class="categories-container">
+        <?php $categories1=0;
+        if(isset($_GET['boxes'])){
+            $checked=[];
+            $checked=$_GET['boxes'];
+            foreach($checked as $br){
+                foreach($categoriesjoin as $category){
+                    if($category->id_category_fk==$br){
+                        ?>
+                        <div class="categories-card">
+                            <div class="container-img">
+                                <img src="<?= $category->img ?>" alt="">
+                            </div>
+                            <div class="container-description">
+                                <div class="data-container">
+                                    <span>$<?= $category->price ?></span>
+                                    <p><?= $category->name ?></p>
+                                    <p><?= substr($category->description,0,30)?>...</p>
+                                    <p><?= $category->category ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+            }
+        } else{
+            foreach($categoriesjoin as $category){
+                ?>
+                <div class="categories-card">
+                    <div class="container-img">
+                        <img src="<?= $category->img ?>" alt="">
+                    </div>
+                    <div class="container-description">
+                        <div class="data-container">
+                            <span>$<?= $category->price ?></span>
+                            <p><?= $category->name ?></p>
+                            <p><?= substr($category->description,0,30)?>...</p>
+                            <p><?= $category->category ?></p>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        }
+        ?>
+        </div>
+    </main>
+
+<?php require_once 'templates/footer.phtml';?>

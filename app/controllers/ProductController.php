@@ -1,6 +1,6 @@
 <?php
 
-    require_once './app/models/CategoryModel.php';
+    require_once './app/models/CategoriesModel.php';
     require_once './app/models/ProductModel.php';
     require_once './app/view/ProductView.php';
 
@@ -12,7 +12,7 @@
 
     public function __construct(){
         $this->model = new ProductModel();
-        $this->modelc = new CategoryModel();
+        $this->modelc = new CategoriesModel();
         $this->view = new ProductsView();
         //$this->user = new UserController();
     
@@ -30,19 +30,22 @@
     }
 
     public function addProduct(){
-        if(isset($_POST['name']) && strlen($_POST['name']) <= 25 && isset($_POST['description']) && strlen($_POST['description']) <= 50 && isset($_POST['price']) && $_POST['price'] >0 && isset($_POST['category'])){
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $category = $_POST['category'];
-            if($_FILES['img']['type']){
-                if($_FILES['img']['type'] == "image/jpg" || $_FILES['img']['type'] == "image/jpeg" || $_FILES['img']['type'] == "image/png" ) {
-                    $this->model->insertProduct($name, $description, $price, $_FILES['img'], $category );
-                    header('Location: ' . BASE_URL);
-                }
+        $isLoggin = UserHelper::checkSession();
+        if($isLoggin){
+            if(isset($_POST['name']) && strlen($_POST['name']) <= 25 && isset($_POST['description']) && strlen($_POST['description']) <= 50 && isset($_POST['price']) && $_POST['price'] >0 && isset($_POST['category'])){
+                $name = $_POST['name'];
+                $description = $_POST['description'];
+                $price = $_POST['price'];
+                $category = $_POST['category'];
+                if($_FILES['img']['type']){
+                    if($_FILES['img']['type'] == "image/jpg" || $_FILES['img']['type'] == "image/jpeg" || $_FILES['img']['type'] == "image/png" ) {
+                        $this->model->insertProduct($name, $description, $price, $_FILES['img'], $category );
+                        header('Location: ' . BASE_URL);
+                    }
+            } 
         }
-        header('Location: ' . BASE_URL); 
         }
+        header('Location: ' . BASE_URL);
     }
 
     public function removeProduct($id){
@@ -64,6 +67,14 @@
         }
         header('Location: ' . BASE_URL); 
         }
+    }
+
+
+    // INDEX 
+
+    public function getIndex(){
+        $products = $this->model->getProducts();
+        $this->view->showIndex($products);
     }
   }
 ?>
