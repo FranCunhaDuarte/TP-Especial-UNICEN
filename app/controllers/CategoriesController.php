@@ -2,20 +2,24 @@
 
     require_once './app/models/CategoriesModel.php';
     require_once './app/view/CategoriesView.php';
+    require_once './app/view/ProductView.php';
 
   class CategoriesController{
     private $model;
     private $view;
+    private $viewp;
 
     public function __construct(){
       $this->model = new CategoriesModel();
       $this->view = new CategoriesView();
+      $this->viewp = new ProductsView();
     }
 
     public function getCategories(){
-      $categoriesjoin=$this->model->getCategoryJoin();
+      $id = $_POST['selectCategory'];
+      $products=$this->model->getProductsByCategory($id);
       $categories=$this->model->getCategory();
-      $this->view->showCategories($categoriesjoin,$categories);
+      $this->viewp-> showProducts($products, $categories);
     }
 
     public function getCategories1($id){

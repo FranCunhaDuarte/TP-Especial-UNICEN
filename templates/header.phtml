@@ -32,13 +32,14 @@
             <li><a href="index" class="index-home">Inicio</a></li>
             <li><a href=" <?php echo BASE_URL; ?>productos" class="index-products nav-text">Productos</a></li>
 
-            <?php if($isAdmin=='Administrador'){ ?>
+            <?php if($isAdmin=='administrador'){ ?>
                 <!-- <li><a href="usuarios" class="index-contact nav-text">Usuarios</a></li> -->
                 <li><a href="categories" class="index-contact nav-text">Categorias</a></li>
             <?php } ?>
             <?php 
                 if($isLoggin){?>
                     <li><a href="<?php echo URL_LOGOUT;?>" class="index-logout nav-text">Cerrar Sesion</a></li>
+                    <li>Bienvenido <?php echo $_SESSION['usuario'] ?> !!</li>
                <?php } else{
                 ?>
                     <li><a href="<?php echo URL_LOGIN;?>" class="index-contact nav-text">Login/Register</a></li>

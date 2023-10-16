@@ -14,6 +14,14 @@
                $categoryjoin = $query->fetchAll(PDO::FETCH_OBJ); 
                return $categoryjoin;
           }
+
+          public function getProductsByCategory($categoryId) {
+               $query = $this->db->prepare("SELECT * FROM product JOIN category ON product.id_category_fk = category.id_category WHERE category.id_category = (?)");
+               $query->execute(array($categoryId));
+               $products = $query->fetchAll(PDO::FETCH_OBJ);
+               return $products;
+           }
+
           public function getCategory(){
                $query= $this->db->prepare( "SELECT * FROM category");
                $query->execute();

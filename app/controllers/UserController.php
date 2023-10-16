@@ -24,15 +24,20 @@
         }
         
         public function registerUser(){
-            //VALIDAR DATOS
-            $name = $_POST['fullname'];
-            $user = $_POST['user'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            $this->model->insertUser($name, $user, $email, $hash);
-            header('Location: ' . URL_LOGIN);
+            if(!empty($_POST['fullname']) && !empty($_POST['user']) && strlen($_POST['user']) >= 5 && !empty($_POST['email']) && !empty($_POST['password']) && strlen($_POST['password']) >= 5){
+                $name = $_POST['fullname'];
+                $user = $_POST['user'];
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $this->model->insertUser($name, $user, $email, $hash);
+                header('Location: ' . URL_LOGIN);
         }
+        else{
+            $error_message = "Faltan datos obligatorios";
+            header('Location: ' . URL_LOGIN . '?error=' . urlencode($error_message));
+        }
+    }
 
 
         public function loginIn(){
@@ -43,7 +48,8 @@
                 UserHelper::login($user);
                 header('Location: ' . URL_PRODUCT);
             }else{
-                header('Location: ' . URL_LOGIN);
+                $error_message = "Nombre de usuario o contraseña incorrectos.";
+                header('Location: ' . URL_LOGIN . '?error=' . urlencode($error_message));
             }
         }
         

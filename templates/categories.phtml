@@ -5,7 +5,7 @@
 
     <main class="categories-main">
         <aside class="categories-filter">
-            <?php if($isAdmin == 'Administrador'){?>
+            <?php if($isAdmin == 'administrador'){?>
             <form class="addCategory-form" action="addCategory" method="POST">
                 <input class="input-category"type="text" name="newCategory" placeholder="Ingrese la categoria...">
                 <button class="input-submit-category">+</button>
@@ -17,14 +17,14 @@
                     <div class="checkbox-box">
                         <input id="" type="checkbox" name="boxes[]" value="<?= $category->id_category?>">
                         <p><?= $category->category ?></p>
-                        <?php if($isAdmin == 'Administrador'){?>
+                        <?php if($isAdmin == 'administrador'){?>
                         <button class="button-delete-category"><a href="delCategory/<?= $category->id_category?>">X</a></button>
                         <?php } ?>
                     </div>
                     <?php } ?>
                     <input class="input-submit-filter" type="submit" value="Filtrar">
             </form>
-            <?php if($isAdmin == 'Administrador'){ ?>
+            <?php if($isAdmin == 'administrador'){ ?>
             <form class="categories-container-checkbox" action="modifyCategory<?php $category->id_category ?>" method="POST">
                 <?php foreach($categories as $category) {
                     ?>

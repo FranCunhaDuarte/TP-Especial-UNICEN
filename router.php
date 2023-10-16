@@ -4,6 +4,7 @@ require_once './app/controllers/ProductController.php';
 require_once './app/controllers/CategoriesController.php';
 require_once './app/controllers/UserController.php';
 require_once './app/helper/UserHelper.php';
+require_once './app/view/ProductView.php';
 
 
 
@@ -17,6 +18,7 @@ define("URL_CATEGORIES", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_
 $productosController = new ProductController();
 $category = new CategoriesController();
 $user = new UserController();
+$view = new ProductsView();
 
 $action = 'productos'; 
 
@@ -54,6 +56,9 @@ switch ($params[0]) {
         $categoryId = isset($params[1]) ? $params[1] : null;
         $category->getCategories1($categoryId);
         break;
+    case 'categories1':
+        $category->getCategories();
+        break;
     case 'delCategory':
         $category->removeCategory($params[1]);
         break;
@@ -73,7 +78,7 @@ switch ($params[0]) {
         UserHelper::logout();
         break;                   
     default:
-        echo('404 Page not found');
+        $view-> showError();
         break;
 }
 ?>

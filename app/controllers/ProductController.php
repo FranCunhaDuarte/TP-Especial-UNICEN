@@ -14,7 +14,6 @@
         $this->model = new ProductModel();
         $this->modelc = new CategoriesModel();
         $this->view = new ProductsView();
-        //$this->user = new UserController();
     
     }
 
@@ -30,9 +29,8 @@
     }
 
     public function addProduct(){
-        $isLoggin = UserHelper::checkSession();
-        if($isLoggin){
-            if(isset($_POST['name']) && strlen($_POST['name']) <= 25 && isset($_POST['description']) && strlen($_POST['description']) <= 50 && isset($_POST['price']) && $_POST['price'] >0 && isset($_POST['category'])){
+        if(UserHelper::checkSession()){
+            if(!empty($_POST['name']) && strlen($_POST['name']) <= 25 && !empty($_POST['description']) && !empty($_POST['price']) && $_POST['price'] >0 && !empty($_POST['category'])){
                 $name = $_POST['name'];
                 $description = $_POST['description'];
                 $price = $_POST['price'];
@@ -49,25 +47,33 @@
     }
 
     public function removeProduct($id){
-        $this->model->deleteProduct($id);
-        header('Location: ' . BASE_URL);
-    }
+        if(UserHelper::checkSession()){
+            $this->model->deleteProduct($id);
+            header('Location: ' . BASE_URL);
+        }else{
+            header('Location: ' . BASE_URL);
+        }
+}
 
     public function modifyProduct($id){
-        if(isset($_POST['name']) && isset($_POST['name']) <= 25 && isset($_POST['description']) && isset($_POST['description']) <= 50 && isset($_POST['price']) && $_POST['price'] >0 && isset($_POST['category'])){
-            $name = $_POST['name'];
-            $description = $_POST['description'];
-            $price = $_POST['price'];
-            $category = $_POST['category'];
-            if($_FILES['img']['type']){
-                if($_FILES['img']['type'] == "image/jpg" || $_FILES['img']['type'] == "image/jpeg" || $_FILES['img']['type'] == "image/png" ) {
-                    $this->model->updateProduct($id,$name, $description, $price, $_FILES['img'], $category );
-                    header('Location: ' . BASE_URL);    
+        if(UserHelper::checkSession()){
+            if(isset($_POST['name']) && isset($_POST['name']) <= 25 && isset($_POST['description']) && isset($_POST['description']) <= 50 && isset($_POST['price']) && $_POST['price'] >0 && isset($_POST['category'])){
+                $name = $_POST['name'];
+                $description = $_POST['description'];
+                $price = $_POST['price'];
+                $category = $_POST['category'];
+                if($_FILES['img']['type']){
+                    if($_FILES['img']['type'] == "image/jpg" || $_FILES['img']['type'] == "image/jpeg" || $_FILES['img']['type'] == "image/png" ) {
+                        $this->model->updateProduct($id,$name, $description, $price, $_FILES['img'], $category );
+                        header('Location: ' . BASE_URL);    
+                    }
                 }
+            }
         }
+    else{
         header('Location: ' . BASE_URL); 
-        }
     }
+}
 
 
     // INDEX 

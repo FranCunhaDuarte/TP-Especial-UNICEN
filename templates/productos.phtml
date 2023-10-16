@@ -4,9 +4,25 @@
     $isLoggin = UserHelper::checkSession();
     $isAdmin = UserHelper::verify(); ?>
 
-<?php if($isAdmin == 'Administrador'){ ?>
+
 <main class="grid-main-products">
-<div class="form-products">
+<aside class="categories-filter">
+            <form class="addCategory-form" action="addCategory" method="POST">
+                <input class="input-category"type="text" name="newCategory" placeholder="Ingrese la categoria...">
+                <button class="input-submit-category">+</button>
+            </form>
+            <form class="categories-container-checkbox" action="categories1" method="POST">
+                    <div>
+                        <select name="selectCategory" id="">
+                        <?php foreach($categories as $category) {?>
+                            <option value="<?php echo $category->id_category?>"><?= $category->category ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <input class="input-submit-filter" type="submit" value="Filtrar">
+            </form>
+            <?php if($isAdmin == 'administrador'){ ?>
+            <div class="form-products">
         <form action="addProduct" method="post" enctype="multipart/form-data">
             <label>Producto</label>
             <input class="" name="name" type="text" maxlength="25">
@@ -25,6 +41,8 @@
             <button type="submit">ENVIAR</button>
         </form>
 </div>
+        </aside>
+
 <?php } ?>
         <div class="container-products">
         <?php foreach($products as $product) {?>
@@ -41,7 +59,7 @@
                     </div>
                     <div class="description-product"><p><?php echo $product->category?></p></div>
                     <div class="buttons-container">
-                        <?php if($isAdmin == 'Administrador'){ ?>
+                        <?php if($isAdmin == 'administrador'){ ?>
                         <button class="delButton"><a href="delProduct/<?php echo $product->id_product?>">BORRAR</a></button>
                         <?php } ?>
                         <div class="form-edit-products posicion ocultar">
@@ -74,11 +92,10 @@
                                 </form>
                                 <button class="cerrar">X</button>
                         </div>
-                        <?php if($isAdmin == 'Administrador'){ ?>                 
+                        <?php if($isAdmin == 'administrador'){ ?>                 
                         <button class="modify">EDITAR</button>
-                        <a href="producto/<?php echo $product->id_product?>" class="product-detail">Ver mas</a>
-                    
-                        <?php } ?>   
+                        <?php } ?> 
+                        <a href="producto/<?php echo $product->id_product?>" class="product-detail">Ver mas</a>  
                     </div>
                 </div>
             </div>

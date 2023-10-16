@@ -14,6 +14,7 @@ class UserHelper {
         UserHelper::init();
         $_SESSION['user'] = $user->user;
         $_SESSION['tipouser'] = $user->tipousuario;
+        $_SESSION['usuario'] = $user->fullname;
     }
 
     public static function logout() {
@@ -25,8 +26,8 @@ class UserHelper {
     public static function verify() {
         UserHelper::init();
         if (isset($_SESSION['user'])) {
-            if($_SESSION['tipouser']=="Administrador"){
-                return "Administrador";
+            if($_SESSION['tipouser']=="administrador"){
+                return "administrador";
             }
             else if($_SESSION['tipouser']=="Usuario"){
                 return "Usuario";
