@@ -735,24 +735,16 @@ body{
     }
 
     /*CARRUSEL*/
-
-    .slider-container {
+    .carousel {
+        max-width: 800px;
+        margin: 0 auto;
         display: flex;
+    }
+    #imagen {
         width: 100%;
-        overflow-x: scroll;
-      
-        /* Vamos a añadir esto 👇 */
-        scroll-snap-type: x mandatory;
-      }
-      
-      .slider-container img {
-        flex: 0 0 100%;
-        width: 100%;
-        object-fit: cover;
-      
-        /* Vamos a añadir esto 👇 */
-        scroll-snap-align: center;
-      }
+        height: 400px;
+        background-size: cover;
+    }
       
   }
 
