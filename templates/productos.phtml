@@ -7,10 +7,12 @@
 
 <main class="grid-main-products">
 <aside class="categories-filter">
+        <?php if($isAdmin == 'administrador'){ ?>
             <form class="addCategory-form" action="addCategory" method="POST">
                 <input class="input-category"type="text" name="newCategory" placeholder="Ingrese la categoria...">
                 <button class="input-submit-category">+</button>
             </form>
+        <?php } ?>
             <form class="categories-container-checkbox" action="categories1" method="POST">
                     <div>
                         <select name="selectCategory" id="">
