@@ -16,7 +16,7 @@
         <div class="container-login-register">
             <form action="iniciarSesion" class="form-login" method="POST">
                 <h2>Iniciar Sesion</h2>
-                <input type="text" name ="user" placeholder="Correo electronico">
+                <input type="text" name ="user" placeholder="Nombre de usuario">
                 <input type="password" name ="password" placeholder="Contraseña">
                 <?php
                     if (isset($_GET['error'])) {
@@ -28,7 +28,7 @@
             <form action="addUser" class="form-register ocultar" method="POST">
                 <h2>Registrarse</h2>
                 <input type="text" name ="fullname" placeholder="Nombre completo" required>
-                <input type="text" name ="user" placeholder="Usuario" required>
+                <input type="text" name ="user" placeholder="Usuario" required minlength="5">
                 <input type="email" name ="email" placeholder="Correo electronico" required>
                 <input type="password" name ="password" placeholder="Contraseña" required>
                 <?php

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-09-2023 a las 06:27:24
+-- Tiempo de generación: 17-10-2023 a las 05:51:54
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -37,8 +37,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id_category`, `category`) VALUES
-(1, 'pc'),
-(2, 'teclados');
+(2, 'teclados'),
+(8, 'monitores'),
+(12, 'procesadores'),
+(13, 'mouses');
 
 -- --------------------------------------------------------
 
@@ -49,7 +51,7 @@ INSERT INTO `category` (`id_category`, `category`) VALUES
 CREATE TABLE `product` (
   `id_product` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `description` varchar(100) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `price` double NOT NULL,
   `img` varchar(255) NOT NULL,
   `id_category_fk` int(11) NOT NULL
@@ -60,7 +62,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id_product`, `name`, `description`, `price`, `img`, `id_category_fk`) VALUES
-(60, '', '', 0, '', 1);
+(66, 'Razer Deathadder V2 X Hyperspeed Inalambrico', 'Más de 13 millones de DeathAdders vendidos. Cuenta con más de una década de premios. Una ergonomía icónica que ahora llega con un control sin límites, gracias a la conectividad doble mediante tecnología Razer™ HyperSpeed Wireless ultrarrápida o Bluetooth', 36000, 'img/652dff4e764f7.png', 2),
+(67, 'Teclado gamer Redragon Shiva K512W RGB', 'Disfrutá de tus partidas en otro nivel con Redragon, marca reconocida que se especializa en brindar la mejor experiencia de juego al público gamer desde hace más de 20 años. Sus teclados se adaptan a todo tipo de jugadores y esto los convierten en un fiel', 37860, 'img/652df8c8b56be.png', 2),
+(68, 'Monitor Led Samsung 22\'\' Con Diseño Sin Bordes ', '- Diseño minimalista, máxima concentración. La pantalla sin bordes en tres de sus lados aporta una estética clara y moderna a cualquier entorno de trabajo. En un entorno de varios monitores, las pantallas se alinean a la perfección para una vista práctica', 75828, 'img/652dfe8e73f19.jpg', 2),
+(69, 'Intel Core i9 I9-12900K BX8071512900K', 'Mejora el rendimiento de tu computadora con el Procesador Intel Core i9-12900K, ideal para aquellos que buscan un alto rendimiento en sus tareas diarias y en juegos. Con sus 16 núcleos y 24 hilos, este procesador te permitirá realizar múltiples tareas de ', 545999, 'img/652e01ea02fcf.png', 2);
 
 -- --------------------------------------------------------
 
@@ -73,7 +78,7 @@ CREATE TABLE `user` (
   `fullname` varchar(50) NOT NULL,
   `user` varchar(25) NOT NULL,
   `email` varchar(40) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `tipousuario` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -82,8 +87,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `fullname`, `user`, `email`, `password`, `tipousuario`) VALUES
-(10, 'gonzalo', 'gonza', 'gallosogonzalo1@gmail.com', '123456', 'administrador'),
-(11, 'gonzalo', 'asd', 'asda@asdsa', '123', '');
+(15, 'webadmin', 'webadmin', 'webadmin@gmail.com', '$2y$10$yQC5UtSWBvbVkC76T4Dk2eimUhex8AE4pAULpijKyEWgKLRzpdfpu', 'administrador');
 
 --
 -- Índices para tablas volcadas
@@ -116,19 +120,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas

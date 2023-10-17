@@ -15,56 +15,59 @@
       $this->viewp = new ProductsView();
     }
 
-    public function getCategories(){
+    public function filterCategories(){
       $id = $_POST['selectCategory'];
       $products=$this->model->getProductsByCategory($id);
       $categories=$this->model->getCategory();
       $this->viewp-> showProducts($products, $categories);
     }
 
-    public function getCategories1($id){
-      if($id==null){
-        $categoriesjoin=$this->model->getCategoryJoin();
-        $categories=$this->model->getCategory();
-        $this->view->showCategories($categoriesjoin,$categories);
-      } else{
-        $categoriesjoin=$this->model->getCategoryJoin();
-        $categories=$this->model->getCategory();
-        $categories1=$this->model->countProductsByCategory($id);
-        $this->view->showCategories1($categoriesjoin,$categories,$categories1);
-      }
+    public function getCategories(){
+      $categories=$this->model->getCategory();
+      $this->view->showCategories($categories);
     }
 
 
 
     public function addCategory(){
-      if(isset($_POST['newCategory'])){
-          $newCategory = $_POST['newCategory'];
-          $this->model->addCategory($newCategory);
-          header('Location: ' . URL_CATEGORIES);
-        }
-      header('Location: ' . URL_CATEGORIES); 
+      if(UserHelper::checkSession()){
+        if(isset($_POST['newCategory']) && !empty($_POST['newCategory'])){
+            $newCategory = strtolower($_POST['newCategory']);
+            $this->model->addCategory($newCategory);
+            header('Location: ' . URL_CATEGORIES);
+          }
+      } else {
+        header('Location: ' . URL_CATEGORIES);
+      }
     }
     
     public function removeCategory($id){
-      $countPrduct=$this->model->countProductsByCategory($id);
-      if($countPrduct!=0){
-        $this->view->showError();
-      } else{
-        $this->model->deleteCategory($id);
+      if(UserHelper::checkSession()){
+        $countPrduct=$this->model->countProductsByCategory($id);
+        if($countPrduct!=0){
+          $this->view->showError();
+        } else{
+          $this->model->deleteCategory($id);
+          header('Location: ' . URL_CATEGORIES);
+        }
+      }else {
         header('Location: ' . URL_CATEGORIES);
       }
-      header('Location: ' . URL_CATEGORIES);
     }
     
     public function updateCategory($id){
-      if(isset($_POST['category'])){
-        $category = $_POST['category'];
-        $this->model->updateCategory($id,$category);
-        var_dump($id,$category);
-        //header('Location: ' . URL_CATEGORIES);    
+      if(UserHelper::checkSession()){
+        if(isset($_POST['categoryName']) && !empty($_POST['categoryName'])){
+          $category = strtolower($_POST['categoryName']);
+          $this->model->updateCategory($id,$category);
+          header('Location: ' . URL_CATEGORIES);
+        } else{
+          $error_message = "Completar el campo";
+          header('Location: ' . URL_CATEGORIES . '?error=' . urlencode($error_message));
+        }
+      } else{
+        header('Location: ' . URL_CATEGORIES);
       }
-      //header('Location: ' . URL_CATEGORIES); 
     }
 
 

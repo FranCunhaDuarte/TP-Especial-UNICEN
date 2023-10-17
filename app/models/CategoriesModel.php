@@ -48,7 +48,7 @@
 
           public function updateCategory($id,$category){
                $query = $this->db->prepare('UPDATE category SET category=? WHERE category.id_category = ?');
-               $query->execute(array($id, $category));
+               $query->execute(array( $category,$id));
           }
      }
 ?>

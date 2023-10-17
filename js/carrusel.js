@@ -2,18 +2,18 @@ if(document.querySelector('#container-slider')){
     setInterval('funcionEjecutar("siguiente")',5000);
  }
  //------------------------------ LIST SLIDER -------------------------
- if(document.querySelector('.listslider')){
-    let link = document.querySelectorAll(".listslider li a");
-    link.forEach(function(link) {
-       link.addEventListener('click', function(e){
-          e.anteriorentDefault();
-          let item = this.getAttribute('itlist');
-          let arrItem = item.split("_");
-          funcionEjecutar(arrItem[1]);
-          return false;
-       });
-     });
- }
+ if (document.querySelector('.listslider')) {
+    let links = document.querySelectorAll(".listslider li a");
+    links.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault(); // Corrige esta línea
+        let item = this.getAttribute('itlist');
+        let arrItem = item.split("_");
+        funcionEjecutar(arrItem[1]);
+        return false;
+      });
+    });
+  }
  function funcionEjecutar(side){
      let parentTarget = document.getElementById('slider');
      let elements = parentTarget.getElementsByTagName('li');

@@ -1,18 +1,24 @@
 <?php require_once './templates/header.phtml'; ?>
-
-<div class="container-product">
-    <div class="container-img">
-        <img src= "<?php echo BASE_URL. $product->img ?>" alt="">
-    </div>
-    <div class="container-description">
-        <div class="data-container">
-            <span>$<?php echo $product->price ?></span>
-            <p><?php echo $product->name ?></p>
-            <p><?php echo $product->description?></p>
+<main class="block-product">
+    <div class="container-product-p">
+        <div class="product-p-img-box">
+            <img src= "<?php echo BASE_URL. $product->img ?>" alt="">
         </div>
-        <div class="description-product"><p><?php echo $product->category ?></p></div>
+        <div class="product-details-p">
+            <p class="product-detail-name"><?php echo $product->name ?></p>
+            <p class="product-detail-price">$<?php echo $product->price ?></p>
+            <p class="product-detail-category">Categoria: <?php echo $product->category ?></p>
+            <div class="product-detail-buttons">
+                <button class="product-detail-buttons-addToCart">Añadir al carrito</button>
+                <button class="product-detail-buttons-buy">Comprar</button>
+            </div>
+        </div>
     </div>
-</div>
+    <div class="product-description-d">
+        <p><?php echo $product->description?></p>
+    </div>
+</main>
 
 <?php require_once './templates/footer.phtml'?>
+
 

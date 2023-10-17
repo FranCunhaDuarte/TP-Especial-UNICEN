@@ -20,7 +20,7 @@ $category = new CategoriesController();
 $user = new UserController();
 $view = new ProductsView();
 
-$action = 'productos'; 
+$action = 'index'; 
 
 if (!empty($_GET['action'])) { 
     $action = $_GET['action'];
@@ -38,8 +38,8 @@ switch ($params[0]) {
         $productosController->getProducts();
         break;
     case 'producto':
-        $productosController->getProduct($params[1]);
-        break;        
+        $productosController->getProduct($params[1]); 
+        break;
     case 'register':
         $user->showLogin();
         break;
@@ -53,11 +53,10 @@ switch ($params[0]) {
         $productosController->modifyProduct($params[1]);
         break;
     case 'categories':
-        $categoryId = isset($params[1]) ? $params[1] : null;
-        $category->getCategories1($categoryId);
-        break;
-    case 'categories1':
         $category->getCategories();
+        break;
+    case 'filterCategories':
+        $category->filterCategories();
         break;
     case 'delCategory':
         $category->removeCategory($params[1]);
@@ -65,7 +64,7 @@ switch ($params[0]) {
     case 'addCategory':
         $category->addCategory();
         break;
-    case 'modifyCategory':
+    case 'updateCategory':
         $category->updateCategory($params[1]);
         break;            
     case 'addUser':

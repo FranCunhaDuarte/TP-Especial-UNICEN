@@ -6,47 +6,43 @@
 
 
 <main class="grid-main-products">
-<aside class="categories-filter">
-        <?php if($isAdmin == 'administrador'){ ?>
-            <form class="addCategory-form" action="addCategory" method="POST">
-                <input class="input-category"type="text" name="newCategory" placeholder="Ingrese la categoria...">
-                <button class="input-submit-category">+</button>
-            </form>
-        <?php } ?>
-            <form class="categories-container-checkbox" action="categories1" method="POST">
-                    <div>
-                        <select name="selectCategory" id="">
-                        <?php foreach($categories as $category) {?>
-                            <option value="<?php echo $category->id_category?>"><?= $category->category ?></option>
-                        <?php } ?>
-                        </select>
-                    </div>
-                    <input class="input-submit-filter" type="submit" value="Filtrar">
-            </form>
-            <?php if($isAdmin == 'administrador'){ ?>
-            <div class="form-products">
-        <form action="addProduct" method="post" enctype="multipart/form-data">
-            <label>Producto</label>
-            <input class="" name="name" type="text" maxlength="25">
-            <label>Categoria</label>
-            <select name="category" id="">
+    <aside class="categories-filter">
+        <form class="categories-container-checkbox" action="filterCategories" method="POST">
+                <select name="selectCategory" id="">
                 <?php foreach($categories as $category) {?>
-                    <option value="<?php echo $category->id_category?>"><?php echo $category->category ?></option> 
+                    <option value="<?php echo $category->id_category?>"><?= $category->category ?></option>
                 <?php } ?>
-            </select>
-            <label>Descripcion</label>
-            <input class="" name="description" type="text" maxlength="50">
-            <label>Precio</label>
-            <input class="" name="price" type="number" maxlength="50">
-            <label>Imagen</label>
-            <input type="file" name="img" placeholder="Inserte link de la imagen">
-            <button type="submit">ENVIAR</button>
+                </select>
+                <input class="input-submit-filter" type="submit" value="Filtrar">
         </form>
-</div>
-        </aside>
-
-<?php } ?>
-        <div class="container-products">
+        <?php if($isAdmin == 'administrador'){ ?>
+        <div class="form-products">
+            <form action="addProduct" method="post" enctype="multipart/form-data">
+                <label>Producto</label>
+                <input class="" name="name" type="text" maxlength="50">
+                <label>Categoria</label>
+                <select name="category" id="">
+                    <?php foreach($categories as $category) {?>
+                        <option value="<?php echo $category->id_category?>"><?php echo $category->category ?></option> 
+                    <?php } ?>
+                </select>
+                <label>Descripcion</label>
+                <input class="" name="description" type="text" maxlength="255">
+                <label>Precio</label>
+                <input class="" name="price" type="number" maxlength="50">
+                <label>Imagen</label>
+                <input type="file" name="img" placeholder="Inserte link de la imagen">
+                <?php
+                    if (isset($_GET['error'])) {
+                        echo '<p class="error-message">' . ($_GET['error']) . '</p>';
+                    }
+                ?>
+                <button type="submit">ENVIAR</button>
+            </form>
+        </div>
+        <?php } ?>
+    </aside>
+    <div class="categories-container">
         <?php foreach($products as $product) {?>
             
             <div class="container-product">
@@ -55,11 +51,11 @@
                 </div>
                 <div class="container-description">
                     <div class="data-container">
-                        <span>$<?php echo $product->price ?></span>
-                        <p><?php echo $product->name ?></p>
-                        <p><?php echo substr($product->description,0,30)?>...</p>
+                        <p class="product-price">$ <?php echo $product->price ?></p>
+                        <p class="product-name"><?php echo $product->name ?></p>
+                        <p class="product-category">Categoria: <?php echo $product->category?></p>
+                        <p class="product-description"><?php echo substr($product->description,0,20)?>...</p>
                     </div>
-                    <div class="description-product"><p><?php echo $product->category?></p></div>
                     <div class="buttons-container">
                         <?php if($isAdmin == 'administrador'){ ?>
                         <button class="delButton"><a href="delProduct/<?php echo $product->id_product?>">BORRAR</a></button>
@@ -101,11 +97,9 @@
                     </div>
                 </div>
             </div>
-            <?php
-                } 
-            ?>   
-        </div>
-    </main>
+        <?php }  ?>   
+    </div>
+</main>
 
 <?php
     require_once 'templates/footer.phtml';

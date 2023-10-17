@@ -1,11 +1,7 @@
 <?php
 
 class CategoriesView {
-    public function showCategories($categoriesjoin,$categories) {
-        require_once 'templates/categories.phtml';
-    }
-
-    public function showCategories1($categoriesjoin,$categories,$categories1){
+    public function showCategories($categories) {
         require_once 'templates/categories.phtml';
     }
 

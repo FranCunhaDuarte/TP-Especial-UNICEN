@@ -10,16 +10,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>TecnoMundo</title>
-    <link rel="stylesheet" href="/TP-Especial-UNICEN/css/style.css">
-    <link rel="stylesheet" href="/TP-Especial-UNICEN/css/carrusel.css">
+    <link rel="stylesheet" href="/TP-Especial-UNICEN-master/css/style.css">
+    <link rel="stylesheet" href="/TP-Especial-UNICEN-master/css/carrusel.css">
+    
 </head>
 <body>
 <header class="grid-header">
         <div class="container-logo">
-            <a href="index" class="container-logo">
-                <img src="img/logo.png" alt="logo" class="logo">
+            <a href="productos" class="container-logo">
+                <img src="/TP-Especial-UNICEN-master/img/logo.png" alt="logo" class="logo">
                 <h1 class="logo-text">TecnoMundo</h1>
             </a>
         </div>
@@ -30,17 +30,17 @@
 
 <nav class="grid-nav nav-bar">
         <ul class="nav-list-main">
-            <li><a href="index" class="index-home">Inicio</a></li>
-            <li><a href=" <?php echo BASE_URL; ?>productos" class="index-products nav-text">Productos</a></li>
+            <li><a href="<?php echo BASE_URL; ?>" class="index-home">Inicio</a></li>
+            <li><a href=" <?php echo URL_PRODUCT; ?>" class="index-products nav-text">Productos</a></li>
 
             <?php if($isAdmin=='administrador'){ ?>
                 <!-- <li><a href="usuarios" class="index-contact nav-text">Usuarios</a></li> -->
-                <li><a href="categories" class="index-contact nav-text">Categorias</a></li>
+                <li><a href="<?php echo URL_CATEGORIES; ?>" class="index-contact nav-text">Categorias</a></li>
             <?php } ?>
             <?php 
                 if($isLoggin){?>
+                    <li class="index-user nav-text">Bienvenido <span class="user-name"><?php echo $_SESSION['usuario'] ?></span></li>
                     <li><a href="<?php echo URL_LOGOUT;?>" class="index-logout nav-text">Cerrar Sesion</a></li>
-                    <li>Bienvenido <?php echo $_SESSION['usuario'] ?> !!</li>
                <?php } else{
                 ?>
                     <li><a href="<?php echo URL_LOGIN;?>" class="index-contact nav-text">Login/Register</a></li>
@@ -51,7 +51,7 @@
         <i class="fa-solid fa-bars button-var"></i>
         <ul class="nav-list hide-menu">
             <li><a href="" class="index-home">Inicio</a></li>
-            <li><a href=" <?php echo BASE_URL; ?>" class="index-products nav-text">Productos</a></li>
+            <li><a href=" <?php echo URL_PRODUCT; ?>" class="index-products nav-text">Productos</a></li>
             <li><a href="<?php echo URL_LOGIN;?>" class="index-contact nav-text">Login/Register</a></li>
         </ul>
 </nav>
